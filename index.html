@@ -6,40 +6,52 @@
   <title>Tomb Sweeper</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="homePage fadeIn">
-  <h1 class="homeTitle">Tomb Sweeper</h1>
-  <p class="homeText">Click below to begin your adventure...</p>
-  <a class="playCircle" onclick="startTransition()">
-    <img src="play.png" alt="Play">
-  </a>
   
+  <header>
+    <h1 class="homeTitle">Tomb Sweeper</h1>
+  </header>
+
+  <main>
+    <section class="intro-section">
+      <p class="homeText">Click below to begin your adventure...</p>
+      
+      <button class="playCircle" onclick="startTransition()" aria-label="Start Game">
+        <img src="play.png" alt="Play Button">
+      </button>
+    </section>
+  </main>
+
   <audio id="bgMusic" loop>
     <source src="background-music.mp3" type="audio/mpeg">
     <source src="background-music.ogg" type="audio/ogg">
   </audio>
-  
+
   <script>
-    window.addEventListener('pageshow', function() {
-      document.body.classList.remove('fadeOut');
-      document.body.classList.add('fadeIn');
+    window.addEventListener("pageshow", () => {
+      document.body.classList.remove("fadeOut");
+      document.body.classList.add("fadeIn");
     });
-    
+
     function startTransition() {
-      const btn = document.querySelector('.playCircle');
-      btn.classList.add('animatePlay');
-      document.body.classList.remove('fadeIn');
-      document.body.classList.add('fadeOut');
-      
-      const bgMusic = document.getElementById('bgMusic');
-      if(bgMusic) {
+      const btn = document.querySelector(".playCircle");
+      btn.classList.add("animatePlay");
+
+      document.body.classList.remove("fadeIn");
+      document.body.classList.add("fadeOut");
+
+      const bgMusic = document.getElementById("bgMusic");
+      if (bgMusic) {
         bgMusic.volume = 0.3;
-        bgMusic.play().catch(e => console.log("Music autoplay blocked"));
+        bgMusic.play().catch(() => console.log("Music autoplay blocked"));
       }
-      
+
       setTimeout(() => {
         window.location.href = "minesweeper.html";
-      }, 800); 
+      }, 800);
     }
   </script>
+
 </body>
 </html>
