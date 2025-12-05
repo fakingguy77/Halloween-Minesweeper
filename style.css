@@ -10,6 +10,7 @@ body {
   color: white;
   overflow-x: hidden;
   overflow-y: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @keyframes playSpin {
@@ -318,3 +319,4 @@ body {
     height: min(80vh, 85vw);
   }
 }
+
