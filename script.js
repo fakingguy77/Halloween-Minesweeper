@@ -29,7 +29,6 @@ if(boardElement) {
 
 if(resetBtn) resetBtn.onclick = startGame;
 
-// Start background music when page loads
 window.addEventListener('load', function() {
   if(bgMusic) {
     bgMusic.volume = 0.3;
@@ -307,3 +306,4 @@ function endGame(win) {
 
   drawBoard();
 }
+
