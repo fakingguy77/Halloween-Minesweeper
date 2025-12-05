@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tomb Sweeper - Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="fadeIn">
+  <button id="backBtn" onclick="history.back()">Back</button>
+
+<div id="gameArea">
+
+  <div id="topBar">
+    ⏱ Time: <span id="time">0</span>
+
+    | <img src="candycorn.png" class="icon">
+    Flags Left: <span id="flagsLeft">0</span>
+
+    | <img src="Score.png" class="icon">
+    Score: <span id="score">0</span>
+  </div>
+
+  <div id="minesweeper"></div>
+
+  <button id="reset">Restart</button>
+  <div id="status"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

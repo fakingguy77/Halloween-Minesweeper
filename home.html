@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tomb Sweeper</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="homePage">
+
+  <h1 class="homeTitle">Tomb Sweeper</h1>
+  <p class="homeText">Click below to begin your adventure...</p>
+
+<a class="playCircle" onclick="startTransition()">
+  <img src="play.png" alt="Play">
+</a>
+
+<script>
+function startTransition() {
+  const btn = document.querySelector('.playCircle');
+
+  btn.classList.add('animatePlay');
+
+  document.body.classList.add("fadeOut");
+
+  setTimeout(() => {
+    window.location.href = "minesweeper.html";
+  }, 800); 
+}
+</script>
+
+
+</body>
+</html>
