@@ -111,7 +111,7 @@ function startGame() {
       el.className = "cell";
       el.dataset.status = "hidden";
 
-      let tile = {
+            let tile = {
         element: el,
         x: r,
         y: c,
@@ -119,8 +119,18 @@ function startGame() {
         status: "hidden"
       };
 
-      el.onmousedown = (e) => handleClick(e, tile);
-      el.onclick = (e) => handleMobileClick(e, tile);
+      el.onmousedown = (e) => {
+        if(window.innerWidth > 768) {
+          handleClick(e, tile);
+        }
+      };
+      
+      el.onclick = (e) => {
+        if(window.innerWidth <= 768) {
+          handleMobileClick(e, tile);
+        }
+      };
+      
       row.push(tile);
     }
     board.push(row);
@@ -325,4 +335,5 @@ function endGame(win) {
 
   drawBoard();
 }
+
 
