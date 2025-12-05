@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tomb Sweeper - Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="fadeIn">
-<button id="backBtn" onclick="window.location.href='index.html'">Back</button>
-<div id="gameArea">
-
-  <div id="topBar">
-    ⏱ Time: <span id="time">0</span>
-
-    | <img src="candycorn.png" class="icon">
-    Flags Left: <span id="flagsLeft">0</span>
-
-    | <img src="Score.png" class="icon">
-    Score: <span id="score">0</span>
+  <button id="backBtn" onclick="goBack()">Back</button>
+  
+  <div id="gameArea">
+    <div id="topBar">
+      ⏱ Time: <span id="time">0</span>
+      | <img src="candycorn.png" class="icon">
+      Flags Left: <span id="flagsLeft">0</span>
+      | <img src="Score.png" class="icon">
+      Score: <span id="score">0</span>
+    </div>
+    <div id="minesweeper"></div>
+    <button id="reset">Restart</button>
+    <div id="status"></div>
   </div>
-
-  <div id="minesweeper"></div>
-
-  <button id="reset">Restart</button>
-  <div id="status"></div>
-
-</div>
-
-<script src="script.js"></script>
+  
+  <button id="mobileToggle" onclick="toggleMode()"></button>
+  
+  <audio id="bgMusic" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+    <source src="background-music.ogg" type="audio/ogg">
+  </audio>
+  
+  <script src="script.js"></script>
 </body>
-
 </html>
