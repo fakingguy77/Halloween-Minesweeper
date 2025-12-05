@@ -39,18 +39,40 @@ body {
 
 #gameArea {
   width: 100%;
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 10px;
   box-sizing: border-box;
   gap: 8px;
+  padding-top: 60px;
+}
+
+#backBtn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: #ff9900;
+  border: none;
+  color: white;
+  padding: clamp(8px, 2vw, 10px) clamp(18px, 4vw, 20px);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: clamp(13px, 2vw, 14px);
+  font-weight: bold;
+  transition: transform 0.2s;
+  z-index: 100;
+}
+
+#backBtn:hover {
+  transform: scale(1.05);
+  background: #ff7700;
 }
 
 #topBar {
-  font-size: clamp(10px, 2.5vw, 18px);
+  font-size: clamp(12px, 3vw, 18px);
   text-shadow: 1px 1px black;
   text-align: center;
   padding: 0 10px;
@@ -61,9 +83,9 @@ body {
   display: grid;
   grid-template-columns: repeat(20, minmax(16px, 1fr));
   grid-template-rows: repeat(20, minmax(16px, 1fr));
-  gap: clamp(3px, 0.3vw, 3px);
-  width: min(95vw, 95vh, 600px);
-  height: min(95vw, 95vh, 600px);
+  gap: clamp(2px, 0.3vw, 3px);
+  width: min(90vw, 90vh, 600px);
+  height: min(90vw, 90vh, 600px);
   aspect-ratio: 1;
 }
 
@@ -79,7 +101,7 @@ body {
   cursor: pointer;
   color: black;
   font-weight: bold;
-  font-size: clamp(10px, 2vw, 16px);
+  font-size: clamp(11px, 2.2vw, 16px);
 }
 
 .cell[data-status="hidden"] { background: #990ad1; }
@@ -88,36 +110,18 @@ body {
 .cell[data-status="mine"] { background: #ff3b3b; }
 
 .cell img { 
-  width: clamp(12px, 80%, 24px);
+  width: clamp(14px, 85%, 24px);
   height: auto;
-}
-
-#backBtn {
-  background: #ff9900;
-  border: none;
-  color: white;
-  padding: clamp(6px, 2vw, 10px) clamp(15px, 4vw, 20px);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: clamp(11px, 2vw, 14px);
-  font-weight: bold;
-  transition: transform 0.2s;
-  z-index: 100;
-}
-
-#backBtn:hover {
-  transform: scale(1.05);
-  background: #555;
 }
 
 #reset {
   background: #ff9900;
   border: none;
   color: white;
-  padding: clamp(6px, 2vw, 10px) clamp(15px, 4vw, 25px);
+  padding: clamp(8px, 2vw, 10px) clamp(20px, 4vw, 25px);
   border-radius: 5px;
   cursor: pointer;
-  font-size: clamp(12px, 2.5vw, 16px);
+  font-size: clamp(14px, 2.5vw, 16px);
   font-weight: bold;
   transition: transform 0.2s;
 }
@@ -128,7 +132,7 @@ body {
 }
 
 #status {
-  font-size: clamp(16px, 3vw, 24px);
+  font-size: clamp(18px, 3vw, 24px);
   text-shadow: 2px 2px black;
   font-weight: bold;
 }
@@ -148,11 +152,10 @@ body {
 
 .playCircle:hover {
   transform: scale(1.1);
-  background: rgba(0, 0, 0, .85);
 }
 
 .icon {
-  width: clamp(16px, 4vw, 28px);
+  width: clamp(18px, 4vw, 28px);
   height: auto;
   vertical-align: middle;
   margin: 0 4px;
@@ -168,30 +171,100 @@ body {
   transition: opacity 0.5s ease;
 }
 
+#mobileToggle {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #ff9900;
+  border: 3px solid #fff;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  transition: transform 0.2s, background 0.3s;
+  align-items: center;
+  justify-content: center;
+}
+
+#mobileToggle:active {
+  transform: scale(0.95);
+}
+
+#mobileToggle.flagMode {
+  background: #db580c;
+}
+
+#mobileToggle img {
+  width: 40px;
+  height: auto;
+}
+
 @media (max-width: 768px) {
   #gameArea {
-    gap: 5px;
-    padding: 5px;
+    gap: 6px;
+    padding: 8px;
+    padding-top: 70px;
+  }
+  
+  #backBtn {
+    top: 15px;
+    left: 15px;
+    padding: 10px 22px;
+    font-size: 15px;
   }
   
   #topBar {
-    font-size: clamp(9px, 3vw, 14px);
+    font-size: clamp(11px, 3.5vw, 16px);
     line-height: 1.3;
   }
   
   .cell {
-    font-size: clamp(10px, 2.5vw, 14px);
+    font-size: clamp(12px, 3vw, 16px);
+  }
+  
+  #minesweeper {
+    width: 92vw;
+    height: 92vw;
+  }
+  
+  #mobileToggle {
+    display: flex;
   }
 }
 
 @media (max-width: 480px) {
+  #gameArea {
+    padding-top: 80px;
+  }
+  
+  #backBtn {
+    top: 20px;
+    left: 20px;
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+  
   #minesweeper {
-    width: 98vw;
-    height: 98vw;
+    width: 95vw;
+    height: 95vw;
   }
   
   #topBar {
-    font-size: 10px;
+    font-size: 12px;
+  }
+  
+  #mobileToggle {
+    width: 75px;
+    height: 75px;
+    bottom: 25px;
+    right: 15px;
+  }
+  
+  #mobileToggle img {
+    width: 45px;
   }
 }
 
@@ -199,10 +272,11 @@ body {
   #gameArea {
     padding: 5px;
     gap: 3px;
+    padding-top: 50px;
   }
   
   #minesweeper {
-    width: min(85vh, 90vw);
-    height: min(85vh, 90vw);
+    width: min(80vh, 85vw);
+    height: min(80vh, 85vw);
   }
 }
