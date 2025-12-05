@@ -2,36 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tomb Sweeper</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="homePage fadeIn">
-
   <h1 class="homeTitle">Tomb Sweeper</h1>
   <p class="homeText">Click below to begin your adventure...</p>
-
-<a class="playCircle" onclick="startTransition()">
-  <img src="play.png" alt="Play">
-</a>
-
-<script>
-window.addEventListener('pageshow', function() {
-  document.body.classList.remove('fadeOut');
-  document.body.classList.add('fadeIn');
-});
-
-function startTransition() {
-  const btn = document.querySelector('.playCircle');
-
-  btn.classList.add('animatePlay');
-  document.body.classList.remove('fadeIn');
-  document.body.classList.add('fadeOut');
-
-  setTimeout(() => {
-    window.location.href = "minesweeper.html";
-  }, 800); 
-}
-</script>
-
+  <a class="playCircle" onclick="startTransition()">
+    <img src="play.png" alt="Play">
+  </a>
+  
+  <audio id="bgMusic" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+    <source src="background-music.ogg" type="audio/ogg">
+  </audio>
+  
+  <script>
+    window.addEventListener('pageshow', function() {
+      document.body.classList.remove('fadeOut');
+      document.body.classList.add('fadeIn');
+    });
+    
+    function startTransition() {
+      const btn = document.querySelector('.playCircle');
+      btn.classList.add('animatePlay');
+      document.body.classList.remove('fadeIn');
+      document.body.classList.add('fadeOut');
+      
+      const bgMusic = document.getElementById('bgMusic');
+      if(bgMusic) {
+        bgMusic.volume = 0.3;
+        bgMusic.play().catch(e => console.log("Music autoplay blocked"));
+      }
+      
+      setTimeout(() => {
+        window.location.href = "minesweeper.html";
+      }, 800); 
+    }
+  </script>
 </body>
 </html>
