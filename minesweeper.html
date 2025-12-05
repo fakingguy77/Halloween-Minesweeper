@@ -6,49 +6,29 @@
   <title>Tomb Sweeper - Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="fadeIn">
-
-  <header>
-    <nav>
-      <button id="backBtn" onclick="goBack()" aria-label="Go Back">Back</button>
-    </nav>
-  </header>
-
-  <main id="gameArea">
-    
-    <section id="topBar" aria-label="Game Status Bar">
-      <span class="status-item">
-        ⏱ Time: <time id="time" datetime="0">0</time>
-      </span>
-
-      <span class="status-item">
-        <img src="candycorn.png" class="icon" alt="Flag Icon">
-        Flags Left: <span id="flagsLeft">0</span>
-      </span>
-
-      <span class="status-item">
-        <img src="Score.png" class="icon" alt="Score Icon">
-        Score: <span id="score">0</span>
-      </span>
-    </section>
-
-    <section id="minesweeper" aria-label="Game Board"></section>
-
-    <section class="controls">
-      <button id="reset" aria-label="Restart Game">Restart</button>
-      <div id="status" role="status" aria-live="polite"></div>
-    </section>
-
-  </main>
-
-  <button id="mobileToggle" onclick="toggleMode()" aria-label="Toggle Mobile Mode"></button>
-
+  <button id="backBtn">Back</button>
+  <button id="musicToggle" aria-label="Toggle Music">🔊</button>
+  
+  <div id="gameArea">
+    <div id="topBar">
+      ⏱ Time: <span id="time">0</span>
+      | <img src="candycorn.png" class="icon" alt="Flag">
+      Flags Left: <span id="flagsLeft">0</span>
+      | <img src="Score.png" class="icon" alt="Score">
+      Score: <span id="score">0</span>
+    </div>
+    <div id="minesweeper"></div>
+    <button id="reset">Restart</button>
+    <div id="status"></div>
+  </div>
+  
+  <button id="mobileToggle"></button>
+  
   <audio id="bgMusic" loop>
     <source src="background-music.mp3" type="audio/mpeg">
   </audio>
-
+  
   <script src="script.js"></script>
 </body>
 </html>
-
