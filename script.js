@@ -63,6 +63,10 @@ if(musicToggle) {
   };
 }
 
+if(mobileToggleBtn) {
+  mobileToggleBtn.onclick = toggleMode;
+}
+
 function toggleMode() {
   isFlagMode = !isFlagMode;
   updateMobileToggle();
@@ -321,3 +325,4 @@ function endGame(win) {
 
   drawBoard();
 }
+
