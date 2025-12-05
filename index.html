@@ -45,17 +45,25 @@
     }
     
     function startTransition() {
-      const btn = document.querySelector('.playCircle');
+      if(!isMusicPlaying && bgMusic) {
+        bgMusic.volume = 0.3;
+        bgMusic.play().catch(e => console.log("Music play failed"));
+        musicToggle.textContent = '🔊';
+        isMusicPlaying = true;
+      }
+    
+    const btn = document.querySelector('.playCircle');
       btn.classList.add('animatePlay');
       document.body.classList.remove('fadeIn');
       document.body.classList.add('fadeOut');
-      
-      setTimeout(() => {
-        window.location.href = "minesweeper.html";
-      }, 800); 
-    }
+  
+  setTimeout(() => {
+    window.location.href = "minesweeper.html";
+  }, 800); 
+}
   </script>
 </body>
 </html>
+
 
 
