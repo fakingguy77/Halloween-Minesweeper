@@ -1,6 +1,7 @@
 let board = [];
 let gameOver = false;
 let firstClick = true;
+let isFlagMode = false;
 
 const SIZE = 20;
 let flagsLeft;
@@ -14,6 +15,8 @@ let flagsText = document.getElementById("flagsLeft");
 let scoreText = document.getElementById("score");
 let timeText = document.getElementById("time");
 let statusText = document.getElementById("status");
+let mobileToggleBtn = document.getElementById("mobileToggle");
+let bgMusic = document.getElementById("bgMusic");
 
 const MINES = Math.floor(SIZE * SIZE * 0.15);
 flagsLeft = MINES;
@@ -26,6 +29,43 @@ if(boardElement) {
 
 if(resetBtn) resetBtn.onclick = startGame;
 
+// Start background music when page loads
+window.addEventListener('load', function() {
+  if(bgMusic) {
+    bgMusic.volume = 0.3;
+    bgMusic.play().catch(e => console.log("Music autoplay blocked"));
+  }
+});
+
+function goBack() {
+  document.body.classList.add('fadeOut');
+  
+  if(bgMusic) {
+    bgMusic.pause();
+  }
+  
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 500);
+}
+
+function toggleMode() {
+  isFlagMode = !isFlagMode;
+  updateMobileToggle();
+}
+
+function updateMobileToggle() {
+  if(!mobileToggleBtn) return;
+  
+  if(isFlagMode) {
+    mobileToggleBtn.classList.add('flagMode');
+    mobileToggleBtn.innerHTML = '<img src="candycorn.png" alt="Flag Mode">';
+  } else {
+    mobileToggleBtn.classList.remove('flagMode');
+    mobileToggleBtn.innerHTML = '';
+  }
+}
+
 startGame();
 
 function startGame() {
@@ -35,11 +75,14 @@ function startGame() {
   score = 0;
   time = 0;
   flagsLeft = MINES;
+  isFlagMode = false;
 
   if(flagsText) flagsText.textContent = flagsLeft;
   if(scoreText) scoreText.textContent = score;
   if(timeText) timeText.textContent = time;
   if(statusText) statusText.textContent = "";
+
+  updateMobileToggle();
 
   if(timer) clearInterval(timer);
   
@@ -59,6 +102,7 @@ function startGame() {
       };
 
       el.onmousedown = (e) => handleClick(e, tile);
+      el.onclick = (e) => handleMobileClick(e, tile);
       row.push(tile);
     }
     board.push(row);
@@ -82,6 +126,30 @@ function handleClick(e, tile) {
 
   if(e.button === 0) open(tile);
   if(e.button === 2) flag(tile);
+}
+
+function handleMobileClick(e, tile) {
+  if(gameOver) return;
+  
+  if(window.innerWidth <= 768) {
+    e.preventDefault();
+    
+    if(firstClick) {
+      firstClick = false;
+      placeMines(tile);
+      
+      timer = setInterval(() => {
+        time++;
+        if(timeText) timeText.textContent = time;
+      }, 1000);
+    }
+    
+    if(isFlagMode) {
+      flag(tile);
+    } else {
+      open(tile);
+    }
+  }
 }
 
 function placeMines(firstTile) {
